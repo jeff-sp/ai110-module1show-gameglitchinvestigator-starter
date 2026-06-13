@@ -8,15 +8,46 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
+Problem 1:
+I needed to do the opposite of what the game said. When the game showed me to go lower, I guessed a higher number.
+When the game showed me to go higher, I picked a lower number.
+The first guess I submitted was 50
+Game showed me 📉 Go LOWER!
+I submit guess: 75
+Game showed me 📈 Go HIGHER!
+I submit guess: 62
+Game showed me 📉 Go LOWER!
+I submit guess: 69
+Game showed me: "🎉 Correct! You won! The secret was 69. Final score: 25"
+
+Started guess at 50
+Hint told me "📉 Go LOWER!"
+I repeatedly kept going lower to 1 and got:
+Actual: Out of attempts! The secret was 56. Score: -35
+Expected: Why didn't the game show me "📈 Go HIGHER!" when my guess was lower than the correct answer?
+
+Started guess at 50
+Hint told me "📈 Go HIGHER!"
+I repeatedly kept going higher to 100:
+Actual: Out of attempts! The secret was 11. Score: -5
+Expected: Why didn't the game show me "📉 Go LOWER!" when my guess was higher than the correct answer?
+
+Problem 2: After running out of guesses, or guessing the correct number, clicking "New Game 🔁" does not remove "Game over. Start a new game to try again." and I cannot guess again.
+
+Problem 3: changing difficult does not change this message: "Guess a number between 1 and 100." and numbers higher than 20 are able to be the secret on Easy difficulty.
+
+Problem 4: Guessing the correct secret should show a positive final score.
+
 **Bug Reproduction Log**
 
 Document at least 3 bugs you found. Add rows as needed.
 
-| Input | Expected Behavior | Actual Behavior | Console Output / Error |
-|-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Input                 | Expected Behavior                     | Actual Behavior          | Console Output / Error |
+|-----------------------|---------------------------------------|--------------------------|------------------------|
+| Guess number < secret | Go LOWER!                             | Go HIGHER!               |                        |
+| Change difficulty     | Number range and label changes.       | Max number stays 100     |                        |
+| click "New Game"      | I can guess again + Game over removed | Game over stays          |                        |
+| correct secret        | Final score is positive               | Final score: -10         |                        |
 
 ---
 
