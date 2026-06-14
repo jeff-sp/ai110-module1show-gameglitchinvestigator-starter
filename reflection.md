@@ -55,23 +55,23 @@ Document at least 3 bugs you found. Add rows as needed.
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
-- I used Claude.
+  - I used Claude.
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
-- When prompted with "Move the parse_guess function to logic_utils.py, update the logic to fix the string/integer bug, and update the import in app.py.", Claude gave suggestion to update parse_guess in logic_utils to first check for None, check the guess for empty string, then use a try except to parse the guess for an integer. I verified the result by playing the game/guessing with an empty string, letters, and letters + numbers; I saw that empty guesses show error "Enter a guess.", and guesses with letters/punctuation show error "That is not a number.". These guesses correctly did not decrement attempts.
+  - When prompted with "Move the parse_guess function to logic_utils.py, update the logic to fix the string/integer bug, and update the import in app.py.", Claude gave suggestion to update parse_guess in logic_utils to first check for None, check the guess for empty string, then use a try except to parse the guess for an integer. I verified the result by playing the game/guessing with an empty string, letters, and letters + numbers; I saw that empty guesses show error "Enter a guess.", and guesses with letters/punctuation show error "That is not a number.". These guesses correctly did not decrement attempts.
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
-- When prompted with "generate a pytest case in tests/test_game_logic.py that specifically targets the bug Final score is positive after guessing nultiple number of attempts including maximum number of attempts.", Claude gave suggestion: "test_losing_game_final_score_is_not_positive" which is a misleading name for a test. I wanted to assert the final score is always positive or not negative. The name for this test is misleading and can imply final scores can be negative when they can't.
+  - When prompted with "generate a pytest case in tests/test_game_logic.py that specifically targets the bug Final score is positive after guessing nultiple number of attempts including maximum number of attempts.", Claude gave suggestion: "test_losing_game_final_score_is_not_positive" which is a misleading name for a test. I wanted to assert the final score is always positive or not negative. The name for this test is misleading and can imply final scores can be negative when they can't.
 
 ---
 
 ## 3. Debugging and testing your fixes
 
 - How did you decide whether a bug was really fixed?
-- I manually played the game and tried the same input causing the bug.
+  - I manually played the game and tried the same input causing the bug.
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
-- One test I ran using pytest was test_easy_difficulty_updates_range_label_and_secret. This test verifies the range is updated after changing difficulty and also changed the label. It showed me the starter code had multiple instances of hard-coded values e.g. 1 for low and 100 for high.
+  - One test I ran using pytest was test_easy_difficulty_updates_range_label_and_secret. This test verifies the range is updated after changing difficulty and also changed the label. It showed me the starter code had multiple instances of hard-coded values e.g. 1 for low and 100 for high.
 - Did AI help you design or understand any tests? How?
-- Yes, when prompting Claude "generate a pytest case in /tests/test_game_logic.py that specifically targets the bug Final score is positive after guessing nultiple number of attempts including maximum number of attempts.", Claude found the bug that update_score adds 5 points for a "Too High" wrong guess on even-numbered attempts. This helped me to understand the scoring logic more and why previously I would end up with a higher than expected final score.
+  - Yes, when prompting Claude "generate a pytest case in /tests/test_game_logic.py that specifically targets the bug Final score is positive after guessing nultiple number of attempts including maximum number of attempts.", Claude found the bug that update_score adds 5 points for a "Too High" wrong guess on even-numbered attempts. This helped me to understand the scoring logic more and why previously I would end up with a higher than expected final score.
 
 ---
 
@@ -85,5 +85,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
   - This could be a testing habit, a prompting strategy, or a way you used Git.
+  - I want to reuse moving functions to a separate file so the functions are easier to test.
 - What is one thing you would do differently next time you work with AI on a coding task?
+  - I would commit more frequently to mark checkpoints that are easier to revert.
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+  - AI generated code can be a lot better when given proper context and examples. Scoping prompts to a specific bug, file, function, and test will make the overall code more maintainable.
+  
